@@ -8,7 +8,7 @@ export async function downloadFile(
   params: API.downloadFileParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseBoolean>('/file/download', {
+  return request<any>('/file/download', {
     method: 'GET',
     params: {
       ...params,
@@ -47,7 +47,7 @@ export async function uploadFile(
     }
   });
 
-  return request<API.BaseResponseBoolean>('/file/upload', {
+  return request<API.BaseResponseString>('/file/upload', {
     method: 'POST',
     params: {
       ...params,

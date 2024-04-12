@@ -129,9 +129,12 @@ const UserAdminPage: React.FC = () => {
     },
   ];
   return (
-    <PageContainer>
+    <div>
+      <Typography.Title level={4} style={{ marginBottom: 16 }}>
+        用户管理
+      </Typography.Title>
       <ProTable<API.User>
-        headerTitle={'查询表格'}
+        headerTitle={'用户信息'}
         actionRef={actionRef}
         rowKey="key"
         search={{
@@ -191,7 +194,7 @@ const UserAdminPage: React.FC = () => {
           setUpdateModalVisible(false);
         }}
       />
-    </PageContainer>
+    </div>
   );
 };
 export default UserAdminPage;

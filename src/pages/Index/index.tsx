@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'umi';
 import {listGeneratorVoByPage} from "@/services/backend/generatorController";
 
+
 /**
  * 默认分页参数
  */

@@ -70,7 +70,7 @@ declare namespace API {
   };
 
   type downloadFileParams = {
-    id?: string;
+    id: number;
   };
 
   type FileConfig = {
@@ -142,6 +142,11 @@ declare namespace API {
     userId?: number;
   };
 
+  type GeneratorMakeRequest = {
+    zipFilePath?: string;
+    meta?: Meta;
+  };
+
   type GeneratorQueryRequest = {
     current?: number;
     pageSize?: number;
@@ -175,6 +180,11 @@ declare namespace API {
     modelConfig?: ModelConfig;
     distPath?: string;
     status?: number;
+  };
+
+  type GeneratorUseRequest = {
+    id?: number;
+    dataModel?: Record<string, any>;
   };
 
   type GeneratorVO = {
@@ -216,6 +226,17 @@ declare namespace API {
     userRole?: string;
     createTime?: string;
     updateTime?: string;
+  };
+
+  type Meta = {
+    name?: string;
+    description?: string;
+    basePackage?: string;
+    version?: string;
+    author?: string;
+    createTime?: string;
+    fileConfig?: FileConfig;
+    modelConfig?: ModelConfig;
   };
 
   type ModelConfig = {

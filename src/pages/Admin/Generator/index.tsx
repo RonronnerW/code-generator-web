@@ -182,7 +182,7 @@ const GeneratorAdminPage: React.FC = () => {
         生成器管理
       </Typography.Title>
       <ProTable<API.Generator>
-        headerTitle={'查询表格'}
+        headerTitle={'生成器信息'}
         actionRef={actionRef}
         rowKey="key"
         search={{

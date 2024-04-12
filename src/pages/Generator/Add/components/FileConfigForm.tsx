@@ -63,9 +63,11 @@ export default (props: Props) => {
         <Input />
       </Form.Item>
       {remove && (
-        <Button type="text" danger onClick={() => remove(field.name)}>
-          删除
-        </Button>
+        <CloseOutlined
+          onClick={() => {
+            remove(field.name);
+          }}
+        />
       )}
     </Space>
   );
@@ -86,7 +88,7 @@ export default (props: Props) => {
               return (
                 <Card
                   size="small"
-                  title={groupKey ? '分组' : '未分组字段'}
+                  title={groupKey ? '分组' : '普通字段'}
                   key={field.key}
                   extra={
                     <CloseOutlined

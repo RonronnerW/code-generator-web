@@ -89,6 +89,21 @@ export async function listGeneratorVoByPage(
   });
 }
 
+/** 此处后端没有提供注释 POST /generator/makeGenerator */
+export async function makeGenerator(
+  body: API.GeneratorMakeRequest,
+  options?: { [key: string]: any },
+) {
+  return request<any>('/generator/makeGenerator', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** 此处后端没有提供注释 POST /generator/my/list/page/vo */
 export async function listMyGeneratorVoByPage(
   body: API.GeneratorQueryRequest,
@@ -110,6 +125,21 @@ export async function updateGenerator(
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseBoolean>('/generator/update', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 此处后端没有提供注释 POST /generator/useGenerator */
+export async function useGenerator(
+  body: API.GeneratorUseRequest,
+  options?: { [key: string]: any },
+) {
+  return request<any>('/generator/useGenerator', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

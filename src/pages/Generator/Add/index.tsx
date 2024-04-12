@@ -1,9 +1,9 @@
 import FileUploader from '@/components/FileUploader';
 import PictureUploader from '@/components/PictureUploader';
-import { COS_HOST } from '@/constants';
+import {COS_HOST} from '@/constants';
 import FileConfigForm from '@/pages/Generator/Add/components/FileConfigForm';
-import { useSearchParams } from '@@/exports';
-import type { ProFormInstance } from '@ant-design/pro-components';
+import {useSearchParams} from '@@/exports';
+import type {ProFormInstance} from '@ant-design/pro-components';
 import {
   ProCard,
   ProFormSelect,
@@ -11,11 +11,13 @@ import {
   ProFormTextArea,
   StepsForm,
 } from '@ant-design/pro-components';
-import { ProFormItem } from '@ant-design/pro-form';
-import { history } from '@umijs/max';
-import { message, UploadFile } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
+import {ProFormItem} from '@ant-design/pro-form';
+import {history} from '@umijs/max';
+import {message, UploadFile} from 'antd';
+import React, {useEffect, useRef, useState} from 'react';
 import {addGenerator, editGenerator, getGeneratorVoById} from "@/services/backend/generatorController";
+import ModelConfigForm from "@/pages/Generator/Add/components/ModelConfigForm";
+import GeneratorMaker from "@/pages/Generator/Add/components/GeneratorMaker";
 
 /**
  * 创建生成器页面
@@ -46,7 +48,7 @@ const GeneratorAddPage: React.FC = () => {
 
       // 处理文件路径
       if (res.data) {
-        const { distPath } = res.data ?? {};
+        const {distPath} = res.data ?? {};
         if (distPath) {
           // @ts-ignore
           res.data.distPath = [
@@ -152,48 +154,48 @@ const GeneratorAddPage: React.FC = () => {
               return true;
             }}
           >
-            <ProFormText name="name" label="名称" placeholder="请输入名称" />
-            <ProFormTextArea name="description" label="描述" placeholder="请输入描述" />
-            <ProFormText name="basePackage" label="基础包" placeholder="请输入基础包" />
-            <ProFormText name="version" label="版本" placeholder="请输入版本" />
-            <ProFormText name="author" label="作者" placeholder="请输入作者" />
-            <ProFormSelect label="标签" mode="tags" name="tags" placeholder="请输入标签列表" />
+            <ProFormText name="name" label="名称" placeholder="请输入名称"/>
+            <ProFormTextArea name="description" label="描述" placeholder="请输入描述"/>
+            <ProFormText name="basePackage" label="基础包" placeholder="请输入基础包"/>
+            <ProFormText name="version" label="版本" placeholder="请输入版本"/>
+            <ProFormText name="author" label="作者" placeholder="请输入作者"/>
+            <ProFormSelect label="标签" mode="tags" name="tags" placeholder="请输入标签列表"/>
             <ProFormItem label="图片" name="picture">
-              <PictureUploader biz="generator_picture" />
+              <PictureUploader biz="generator_picture"/>
             </ProFormItem>
           </StepsForm.StepForm>
           <StepsForm.StepForm
             name="modelConfig"
             title="模型配置"
-            // onFinish={async (values) => {
-            //   setModelConfig(values);
-            //   return true;
-            // }}
+            onFinish={async (values) => {
+              setModelConfig(values);
+              return true;
+            }}
           >
-            {/*<ModelConfigForm formRef={formRef} oldData={oldData} />*/}
+            <ModelConfigForm formRef={formRef} oldData={oldData}/>
           </StepsForm.StepForm>
           <StepsForm.StepForm
             name="fileConfig"
             title="文件配置"
-            // onFinish={async (values) => {
-            //   setFileConfig(values);
-            //   return true;
-            // }}
+            onFinish={async (values) => {
+              setFileConfig(values);
+              return true;
+            }}
           >
-            <FileConfigForm formRef={formRef} oldData={oldData} />
+            <FileConfigForm formRef={formRef} oldData={oldData}/>
           </StepsForm.StepForm>
           <StepsForm.StepForm name="dist" title="生成器文件">
             <ProFormItem label="产物包" name="distPath">
-              <FileUploader biz="generator_dist" description="请上传生成器文件压缩包" />
+              <FileUploader biz="generator_dist" description="请上传生成器文件压缩包"/>
             </ProFormItem>
 
-            {/*<GeneratorMaker*/}
-            {/*  meta={{*/}
-            {/*    ...basicInfo,*/}
-            {/*    ...modelConfig,*/}
-            {/*    ...fileConfig,*/}
-            {/*  }}*/}
-            {/*/>*/}
+            <GeneratorMaker
+              meta={{
+                ...basicInfo,
+                ...modelConfig,
+                ...fileConfig,
+              }}
+            />
           </StepsForm.StepForm>
         </StepsForm>
       )}
